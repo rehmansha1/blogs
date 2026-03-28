@@ -1,161 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>TrendForge — Blog Index</title>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<style>
-  :root {
-    --bg: #faf8f4; --ink: #1a1612; --muted: #7a7269;
-    --rule: #e5e0d8; --accent: #c84b2f; --surface: #f2ede6;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--ink); font-family: 'Lora', Georgia, serif; -webkit-font-smoothing: antialiased; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>TrendForge — Blog Index</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #faf8f4;
+      --ink: #1a1612;
+      --muted: #7a7269;
+      --rule: #e5e0d8;
+      --accent: #c84b2f;
+      --surface: #f2ede6;
+    }
 
-  header {
-    border-bottom: 2px solid var(--ink);
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    text-align: center;
-  }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  .brand {
-    font-family: 'Syne', sans-serif;
-    font-size: 48px;
-    font-weight: 800;
-    letter-spacing: -2px;
-    color: var(--ink);
-  }
-  .brand span { color: var(--accent); }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Lora', Georgia, serif;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  .subtitle {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
+    header {
+      border-bottom: 2px solid var(--ink);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+    }
 
-  .count-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 900px;
-    margin: 40px auto 20px;
-    padding: 0 40px;
-    font-family: 'Syne', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
+    .brand {
+      font-family: 'Syne', sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -2px;
+      color: var(--ink);
+    }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1px;
-    background: var(--rule);
-    max-width: 900px;
-    margin: 0 auto 60px;
-    border: 1px solid var(--rule);
-  }
+    .brand span {
+      color: var(--accent);
+    }
 
-  .card {
-    background: var(--bg);
-    padding: 28px 28px 24px;
-    text-decoration: none;
-    color: var(--ink);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    transition: background 0.2s;
-    animation: fadeUp 0.5s ease both;
-    position: relative;
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .card:hover { background: var(--surface); }
+    .subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
 
-  .card-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--accent);
-    font-weight: 500;
-  }
+    .count-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 900px;
+      margin: 40px auto 20px;
+      padding: 0 40px;
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
 
-  .card-topic {
-    font-family: 'Syne', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-    line-height: 1.3;
-    flex: 1;
-  }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      max-width: 900px;
+      margin: 0 auto 60px;
+      border: 1px solid var(--rule);
+    }
 
-  .card-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-  }
+    .card {
+      background: var(--bg);
+      padding: 28px 28px 24px;
+      text-decoration: none;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: background 0.2s;
+      animation: fadeUp 0.5s ease both;
+      position: relative;
+    }
 
-  .card-arrow {
-    position: absolute;
-    right: 24px;
-    bottom: 24px;
-    font-size: 18px;
-    color: var(--rule);
-    transition: color 0.2s, transform 0.2s;
-  }
-  .card:hover .card-arrow { color: var(--accent); transform: translateX(4px); }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
 
-  footer {
-    border-top: 1px solid var(--rule);
-    text-align: center;
-    padding: 24px;
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-  @media (max-width: 600px) {
-    .brand { font-size: 32px; }
-    .grid { grid-template-columns: 1fr; }
-  }
-</style>
+    .card:hover {
+      background: var(--surface);
+    }
+
+    .card-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .card-topic {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+      flex: 1;
+    }
+
+    .card-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .card-arrow {
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      font-size: 18px;
+      color: var(--rule);
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .card:hover .card-arrow {
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    footer {
+      border-top: 1px solid var(--rule);
+      text-align: center;
+      padding: 24px;
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      .brand {
+        font-size: 32px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-  <div class="brand">Trend<span>Forge</span></div>
-  <div class="subtitle">AI-Generated Blog Collection · 1 Posts</div>
-</header>
+  <header>
+    <div class="brand">Trend<span>Forge</span></div>
+    <div class="subtitle">AI-Generated Blog Collection · 1 Posts</div>
+  </header>
 
-<div class="count-bar">
-  <span>All Posts</span>
-  <span>1 articles</span>
-</div>
+  <div class="count-bar">
+    <span>All Posts</span>
+    <span>1 articles</span>
+  </div>
 
-<div class="grid">
-  
-    <a class="card" href="01-ps5.html" style="animation-delay:0s">
-      <div class="card-num">01</div>
-      <div class="card-topic">ps5</div>
-      <div class="card-meta">Mar 28 · mistral:7b</div>
-      <div class="card-arrow">→</div>
-    </a>
-</div>
+  <div class="grid">
 
-<footer>TrendForge</footer>
+
+  </div>
+
+  <footer>TrendForge</footer>
 
 </body>
+<script>
+  const blogsNames = [
+
+  ];
+  const blogDir = path.join(__dirname, "/blogs");
+  blogsNames = await fs.readdir(blogDir)
+  function callenge() {
+    return blogsNames.map((name, index) => {
+      const nameBlog = name.split('-')[1].replace(".html", "");
+      const num = String(index + 1).padStart(2, "0");
+
+      return `
+      <a class="card" href="./blogs/${name}" style="animation-delay:${index * 0.1}s">
+        <div class="card-num">${num}</div>
+        <div class="card-topic">${nameBlog}</div>
+        <div class="card-meta">Mar 28 · mistral:7b</div>
+        <div class="card-arrow">→</div>
+      </a>`;
+    }).join("");
+  }
+
+  document.getElementsByClassName("grid")[0].innerHTML =  callenge()
+
+</script>
+
 </html>
