@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>obama — TrendForge</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg:       #faf8f4;
+    --ink:      #1a1612;
+    --muted:    #7a7269;
+    --rule:     #e5e0d8;
+    --accent:   #c84b2f;
+    --accent2:  #2f6bc8;
+    --surface:  #f2ede6;
+    --code-bg:  #1a1612;
+    --code-txt: #e8c99a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 18px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Lora', Georgia, serif;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Top bar ── */
+  .topbar {
+    border-bottom: 2px solid var(--ink);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+
+  .brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .brand span { color: var(--accent); }
+
+  .topbar-right {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── Layout ── */
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 0;
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+
+  /* ── Article ── */
+  article {
+    padding: 60px 64px 80px 40px;
+    border-right: 1px solid var(--rule);
+    animation: fadeIn 0.6s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .post-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .post-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  article h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 28px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .meta-chip {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  article h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    color: var(--ink);
+    margin: 44px 0 14px;
+    padding-top: 8px;
+    border-top: 2px solid var(--ink);
+  }
+
+  article h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 28px 0 10px;
+  }
+
+  article p {
+    margin-bottom: 22px;
+    color: #2e2820;
+    max-width: 68ch;
+  }
+
+  article p:first-of-type {
+    font-size: 1.08rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #3d3830;
+  }
+
+  article ul, article ol {
+    padding-left: 24px;
+    margin-bottom: 22px;
+    max-width: 68ch;
+  }
+
+  article li { margin-bottom: 8px; }
+
+  article strong { font-weight: 700; color: var(--ink); }
+  article em { font-style: italic; color: var(--muted); }
+
+  article code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78em;
+    background: var(--code-bg);
+    color: var(--code-txt);
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+
+  article a {
+    color: var(--accent2);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  article hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 40px 0;
+  }
+
+  article br { display: block; content: ''; margin: 6px 0; }
+
+  /* FAQ auto-style */
+  article h3 + p { margin-top: 0; }
+
+  /* Pull quote on first H2 */
+  article h2:first-of-type {
+    color: var(--accent);
+    border-top-color: var(--accent);
+  }
+
+  /* Sources */
+  .sources {
+    margin-top: 48px;
+    padding: 24px 28px;
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+  }
+  .sources-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .sources ul { list-style: none; padding: 0; }
+  .sources li {
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--muted);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--rule);
+    line-height: 1.5;
+  }
+  .sources li:last-child { border-bottom: none; }
+
+  /* ── Sidebar ── */
+  aside {
+    padding: 48px 28px 48px 32px;
+    position: sticky;
+    top: 58px;
+    align-self: start;
+    height: calc(100vh - 58px);
+    overflow-y: auto;
+  }
+
+  .aside-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .nav-post {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+    transition: color 0.15s, padding-left 0.15s;
+    line-height: 1.4;
+  }
+  .nav-post:hover { color: var(--accent); padding-left: 6px; }
+
+  .model-badge {
+    margin-top: 32px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 14px 16px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.8;
+  }
+  .model-badge span { color: #e8c99a; }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 2px solid var(--ink);
+    text-align: center;
+    padding: 28px;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @media (max-width: 768px) {
+    .layout { grid-template-columns: 1fr; }
+    aside { display: none; }
+    article { padding: 32px 24px 60px; }
+    .topbar { padding: 14px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="index.html">Trend<span>Forge</span></a>
+  <span class="topbar-right">AI Blog Engine</span>
+</header>
+
+<div class="layout">
+  <article>
+    <div class="post-label">Trending</div>
+
+    <h1>Obama: Navigating Recent Developments and Controversies</h1>
+      <div class="post-meta">
+        <span>March 28, 2026</span>
+        <span class="meta-chip">mistral:7b</span>
+        <span class="meta-chip">geo: IN</span>
+        <span class="meta-chip">6 sources</span>
+      </div>
+<br>
+<p>In the ever-evolving political landscape, few figures have garnered as much attention and debate as Barack Obama. As we delve into recent developments surrounding the 44th President of the United States, let's explore four key areas that have sparked discussion and controversy in 2026.</p>
+<br>
+<h2>Trump vs. Obama: The Alien Files and UFOs</h2>
+<br>
+<p>One of the most captivating stories revolves around the ongoing feud between Barack Obama and Donald Trump over extraterrestrial files and UFOs. It all started when Obama mentioned during an interview that he couldn't reveal everything about unidentified aerial phenomena due to national security reasons [4]. Trump responded by directing the Pentagon to release these documents, intensifying the curiosity surrounding this enigmatic topic [1][4].</p>
+<br>
+<h2>The Voter ID Law Verdict: A GOP Victory?</h2>
+<br>
+<p>In another notable event, an Obama-appointed judge reversed his initial decision and ruled that a voter ID law in Wisconsin was not discriminatory. This controversial law requires voters to present photo identification at the polls, a move critics argue disproportionately affects racial minorities [2]. The verdict marked a win for Republicans, who have long advocated for stricter voting procedures to combat alleged voter fraud.</p>
+<br>
+<h2>The Netflix Tussle: Trump vs. Obama's Former Official</h2>
+<br>
+<p>The political arena was once again abuzz with news of Trump demanding that a former Obama official be removed from Netflix's board [5]. The tussle stems from the official's role in the Russia investigation, prompting calls for increased scrutiny and potential action against those perceived as loyal to the previous administration.</p>
+<br>
+<h2>Iran Wants Trump to Pull an Obama: A New Diplomatic Strategy?</h2>
+<br>
+<p>Iran has reportedly expressed a desire for Trump to emulate Obama's diplomatic approach, hoping for a return to the nuclear deal that was struck during Obama's tenure [6]. As tensions between the U.S. and Iran escalate, this call for diplomacy could signal a shift in Iran's stance towards the current administration.</p>
+<br>
+<h2>FAQ</h2>
+<br>
+<ol>
+<li><strong>What is the latest news about Barack Obama?</strong></li>
+</ol>
+<p>Obama has been involved in a series of events related to extraterrestrial files, voter ID laws, potential board removals, and diplomatic strategies with Iran.</p>
+<br>
+<ol>
+<li><strong>Did Trump really ask for Obama's former official to be removed from Netflix's board?</strong></li>
+</ol>
+<p>Yes, reports suggest that Trump has demanded Netflix remove a former Obama official from their board [5].</p>
+<br>
+<ol>
+<li><strong>What is the current status of the nuclear deal between Iran and the U.S.?</strong></li>
+</ol>
+<p>Tensions between Iran and the U.S. are escalating, with Iran expressing a desire for Trump to reconsider Obama's diplomatic approach towards the nuclear deal [6].</p>
+<br>
+<h2>Conclusion</h2>
+<br>
+<p>In this dynamic political climate, Barack Obama continues to make headlines as his legacy and policies face both scrutiny and emulation. As we move forward, it remains to be seen how these recent developments will shape not only Obama's legacy but also the current political landscape.</p>
+<br>
+<h3>Call-to-Action</h3>
+<br>
+<p>Stay informed about the latest news and developments by following trusted sources for up-to-date information on politics and global events. Don't miss out on the unfolding narrative of Barack Obama and his impact on contemporary politics.</p>
+
+
+    
+    <div class="sources">
+      <div class="sources-label">Sources Referenced</div>
+      <ul><li>Trump makes another swipe at Obama and reveals the 'worst' president in history - unilad.com (Sat, 28 Mar 2026 13:35:58 GMT)</li><li>Obama-appointed judge reverses course, rules voter ID law isn't discriminatory in GOP win - Fox News (Fri, 27 Mar 2026 16:47:20 GMT)</li><li>Trump directs US government to prepare release of files on aliens and UFOs - BBC (Fri, 20 Feb 2026 08:00:00 GMT)</li><li>Trump responds to Obama’s viral interview, saying he will ask Pentagon to release files on UFOs and extraterrestrials – as it happened - The Guardian (Thu, 19 Feb 2026 08:00:00 GMT)</li><li>Trump demands Netflix remove former Obama official from board - Financial Times (Sat, 21 Feb 2026 08:00:00 GMT)</li><li>Opinion | Iran Wants Trump to Pull an Obama - WSJ (Tue, 17 Feb 2026 08:00:00 GMT)</li></ul>
+    </div>
+  </article>
+
+  <aside>
+    <div class="aside-label">More Posts</div>
+    <a href="01-obama.html" class="nav-post">obama</a>
+
+    <div class="model-badge">
+      <div>Model: <span>mistral:7b</span></div>
+      <div>Region: <span>IN</span></div>
+      <div>Date: <span>March 28, 2026</span></div>
+    </div>
+  </aside>
+</div>
+
+<footer>Generated by TrendForge · Powered by Ollama</footer>
+
+</body>
+</html>
