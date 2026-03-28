@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>srh — TrendForge</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg:       #faf8f4;
+    --ink:      #1a1612;
+    --muted:    #7a7269;
+    --rule:     #e5e0d8;
+    --accent:   #c84b2f;
+    --accent2:  #2f6bc8;
+    --surface:  #f2ede6;
+    --code-bg:  #1a1612;
+    --code-txt: #e8c99a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 18px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Lora', Georgia, serif;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Top bar ── */
+  .topbar {
+    border-bottom: 2px solid var(--ink);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+
+  .brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .brand span { color: var(--accent); }
+
+  .topbar-right {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── Layout ── */
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 0;
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+
+  /* ── Article ── */
+  article {
+    padding: 60px 64px 80px 40px;
+    border-right: 1px solid var(--rule);
+    animation: fadeIn 0.6s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .post-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .post-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  article h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 28px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .meta-chip {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  article h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    color: var(--ink);
+    margin: 44px 0 14px;
+    padding-top: 8px;
+    border-top: 2px solid var(--ink);
+  }
+
+  article h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 28px 0 10px;
+  }
+
+  article p {
+    margin-bottom: 22px;
+    color: #2e2820;
+    max-width: 68ch;
+  }
+
+  article p:first-of-type {
+    font-size: 1.08rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #3d3830;
+  }
+
+  article ul, article ol {
+    padding-left: 24px;
+    margin-bottom: 22px;
+    max-width: 68ch;
+  }
+
+  article li { margin-bottom: 8px; }
+
+  article strong { font-weight: 700; color: var(--ink); }
+  article em { font-style: italic; color: var(--muted); }
+
+  article code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78em;
+    background: var(--code-bg);
+    color: var(--code-txt);
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+
+  article a {
+    color: var(--accent2);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  article hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 40px 0;
+  }
+
+  article br { display: block; content: ''; margin: 6px 0; }
+
+  /* FAQ auto-style */
+  article h3 + p { margin-top: 0; }
+
+  /* Pull quote on first H2 */
+  article h2:first-of-type {
+    color: var(--accent);
+    border-top-color: var(--accent);
+  }
+
+  /* Sources */
+  .sources {
+    margin-top: 48px;
+    padding: 24px 28px;
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+  }
+  .sources-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .sources ul { list-style: none; padding: 0; }
+  .sources li {
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--muted);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--rule);
+    line-height: 1.5;
+  }
+  .sources li:last-child { border-bottom: none; }
+
+  /* ── Sidebar ── */
+  aside {
+    padding: 48px 28px 48px 32px;
+    position: sticky;
+    top: 58px;
+    align-self: start;
+    height: calc(100vh - 58px);
+    overflow-y: auto;
+  }
+
+  .aside-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .nav-post {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+    transition: color 0.15s, padding-left 0.15s;
+    line-height: 1.4;
+  }
+  .nav-post:hover { color: var(--accent); padding-left: 6px; }
+
+  .model-badge {
+    margin-top: 32px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 14px 16px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.8;
+  }
+  .model-badge span { color: #e8c99a; }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 2px solid var(--ink);
+    text-align: center;
+    padding: 28px;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @media (max-width: 768px) {
+    .layout { grid-template-columns: 1fr; }
+    aside { display: none; }
+    article { padding: 32px 24px 60px; }
+    .topbar { padding: 14px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="index.html">Trend<span>Forge</span></a>
+  <span class="topbar-right">AI Blog Engine</span>
+</header>
+
+<div class="layout">
+  <article>
+    <div class="post-label">Trending</div>
+
+    <h1>SRH's Thrilling Start to IPL 2026: A Closer Look</h1>
+      <div class="post-meta">
+        <span>March 28, 2026</span>
+        <span class="meta-chip">mistral:7b</span>
+        <span class="meta-chip">geo: IN</span>
+        <span class="meta-chip">6 sources</span>
+      </div>
+<br>
+<p>In the electrifying world of Indian Premier League (IPL) 2026, Sunrisers Hyderabad (SRH) have made a captivating entrance, setting the stage ablaze with their record-breaking performance in their opening match against Royal Challengers Bengaluru (RCB). Let's delve into the details of SRH's sensational start and explore what lies ahead.</p>
+<br>
+<h2>SRH's Record-Breaking Performance in the First Match</h2>
+<br>
+<p>In a dramatic turn of events, SRH managed to score an impressive 201 runs against RCB, marking Ishan Kishan's captaincy debut with a bang (<a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxPTGxMM1pqWXNwaUFjS3NGNU5XT0FyUHZLYmJHWmw4bTItVDNrbWd6eFhSVDNmNndjMTdvME9EN2xLRWJISnF5dVlHQldiSFljNWZEV1h2RzN6Tm50NnIxMnpPSGY0SXhOWEY2YVM1SVZfem5JS0Vld0wwdkQ2ZFV0aFdSYktlMUt2NldtYXZlWjNtN1g3b1FCR2ZraF8zZW12dUNVcXZoU0dlNXhielE" target="_blank">Source</a>). Kishan's exceptional innings of 147 runs off just 65 balls set a new record for the fastest fifty, hundred, and highest individual score in IPL history.</p>
+<br>
+<h2>SRH's Power-Packed Playing XI</h2>
+<br>
+<p>With an impressive lineup led by Kishan, SRH boasts a formidable batting order backed by stalwarts like Abhishek Sharma, Kane Williamson, and the enigmatic David Warner (<a href="https://news.google.com/rss/articles/CBMi1AFBVV95cUxORDR2d2Q2VGYyTm5WYUV1dFU0VUxJa3p6Sy1vN3I0OEI0RTVGaTlIaUZ2dmx6WjFob0pkcjN3R09ycDl5akN4eEVOb1dnNldnd1pYT015RUs0Y2FiY2F6TlhhRUV0RmhIX0o4T0xva0cyeFRSQ0pOazY0Znd2MTdVQWpTZW1wZWMzb1NFc3JveDFhY0RuN0FQSXlSN2puNGtYZFdKMmVrS3ZQeDMtX1BrYnJPTUhpR3N" target="_blank">Source</a>). The bowling department is also stacked with experienced players like Umran Malik, T Natarajan, and Bhuvneshwar Kumar, ensuring SRH maintains a strong presence on the field.</p>
+<br>
+<h2>IPL 2026: A Tournament without an Opening Ceremony</h2>
+<br>
+<p>This year's IPL tournament commenced without the traditional opening ceremony, owing to logistical challenges and a focus on maintaining a safe environment for players amidst the ongoing pandemic (<a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxOU2lRd3BzNVUtZGdQTFVaa2FpRGhLcTcwWndmWnJkUWMwamRGdXBPOXFKR1VYcUZ4Y0t4YnctbTFFUENvaU1QQnRxR2JuUW1PbVY4UzBBSklCNVFnUGR0R0l2S0hxTzdNWVppc3dxUUg4LTR3YTc5Uk9DMGJ1azV1U2Q2ZGYzMXZSeVdmLWJVek5fc0FKb1BUTWhnRUVrdGNnNEVYdE04cGo1Z9IBrwFBVV95cUxQdjh" target="_blank">Source</a>). Although fans might miss the extravagant spectacle, the focus remains on delivering a high-quality cricket tournament that captivates audiences across the globe.</p>
+<br>
+<h2>Fan Reactions and Criticism</h2>
+<br>
+<p>The opening match between RCB and SRH has sparked lively discussions among fans, with some applauding Ishan Kishan's performance, while others have criticized Abhishek Sharma's approach at the crease (<a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxPOTRLVnV3UzFmdmVTaERGREFQQ3AxRVY0ekhqTUtNdFEwaGlHamN6ZDFKaTZCZGxmWGdoa3p6Vkkya2JkVzNPSjZBWlVhNGg1WVdFRkRHdnBwWkZfX0w0b3JoV0xZQThUT2NIT2ptUmo0YzhFcFhFNzdaNnkzYzJ2ckFDQ0xpX2lzbWhwcGh0VWRWV1E3Nkg1RTA0Um5TR3FBV0FQU0dDaUhXV3BmZDBVdmZzRdIBuAF" target="_blank">Source</a>). The debate continues as fans eagerly anticipate SRH's subsequent performances and the twists and turns that IPL 2026 is sure to bring.</p>
+<br>
+<h2>FAQ</h2>
+<br>
+<ol>
+<li>Who is the captain of Sunrisers Hyderabad in IPL 2026?</li>
+</ol>
+<ul>
+<li>Ishan Kishan is the captain of Sunrisers Hyderabad in IPL 2026.</li>
+</ul>
+<br>
+<ol>
+<li>Who scored the fastest fifty, hundred, and highest individual score in IPL history?</li>
+</ol>
+<ul>
+<li>Ishan Kishan set a new record for the fastest fifty, hundred, and highest individual score in IPL history during SRH's opening match against RCB in 2026.</li>
+</ul>
+<br>
+<ol>
+<li>Why was there no opening ceremony for IPL 2026?</li>
+</ol>
+<ul>
+<li>There was no opening ceremony for IPL 2026 due to logistical challenges and a focus on maintaining a safe environment for players amidst the ongoing pandemic.</li>
+</ul>
+<br>
+<h2>Conclusion</h2>
+<br>
+<p>Sunrisers Hyderabad's entry into IPL 2026 has been nothing short of spectacular, with Ishan Kishan making history with his record-breaking performance in their opening match against RCB. As the tournament progresses, fans can expect more thrilling encounters and exciting developments from SRH and the other participating teams. Don't miss out on the action - tune in to catch all the updates and follow your favorite teams as they battle it out for IPL glory!</p>
+
+
+    
+    <div class="sources">
+      <div class="sources-label">Sources Referenced</div>
+      <ul><li>RCB vs SRH Live Score, IPL 2026: Unadkat snags Salt after SRH hit 201 - ESPNcricinfo (Sat, 28 Mar 2026 15:59:40 GMT)</li><li>Royal Challengers Bengaluru vs Sunrisers Hyderabad, 1st Match, Indian Premier League 2026 - Commentary - Cricbuzz (Sat, 28 Mar 2026 14:44:53 GMT)</li><li>Playing XI - RCB vs SRH 1st Match | Indian Premier League Squad - ESPNcricinfo (Sat, 28 Mar 2026 13:33:36 GMT)</li><li>Ishan Kishan Marks SRH Captaincy Debut In IPL 2026 With Record Knock - NDTV Sports (Sat, 28 Mar 2026 16:29:22 GMT)</li><li>Why IPL 2026 has no opening ceremony before RCB vs SRH opener? - CNBC TV18 (Sat, 28 Mar 2026 10:59:43 GMT)</li><li>'Abhishek Sharma slogger is getting exposed again': Fans grill SRH opener as RCB's Duffy causes carnage in IPL match - Firstpost (Sat, 28 Mar 2026 14:37:47 GMT)</li></ul>
+    </div>
+  </article>
+
+  <aside>
+    <div class="aside-label">More Posts</div>
+    <a href="01-rcb.html" class="nav-post">$rcb</a><a href="02-vs.html" class="nav-post">vs</a><a href="03-srh.html" class="nav-post">srh</a><a href="04-.html" class="nav-post">इंडियन</a><a href="05-.html" class="nav-post">प्रीमियर</a><a href="06-.html" class="nav-post">लीग</a>
+
+    <div class="model-badge">
+      <div>Model: <span>mistral:7b</span></div>
+      <div>Region: <span>IN</span></div>
+      <div>Date: <span>March 28, 2026</span></div>
+    </div>
+  </aside>
+</div>
+
+<footer>Generated by TrendForge · Powered by Ollama</footer>
+
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>लीग — TrendForge</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg:       #faf8f4;
+    --ink:      #1a1612;
+    --muted:    #7a7269;
+    --rule:     #e5e0d8;
+    --accent:   #c84b2f;
+    --accent2:  #2f6bc8;
+    --surface:  #f2ede6;
+    --code-bg:  #1a1612;
+    --code-txt: #e8c99a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 18px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Lora', Georgia, serif;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Top bar ── */
+  .topbar {
+    border-bottom: 2px solid var(--ink);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+  }
+
+  .brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .brand span { color: var(--accent); }
+
+  .topbar-right {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── Layout ── */
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 0;
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+
+  /* ── Article ── */
+  article {
+    padding: 60px 64px 80px 40px;
+    border-right: 1px solid var(--rule);
+    animation: fadeIn 0.6s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .post-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .post-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  article h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 28px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .meta-chip {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  article h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    color: var(--ink);
+    margin: 44px 0 14px;
+    padding-top: 8px;
+    border-top: 2px solid var(--ink);
+  }
+
+  article h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 28px 0 10px;
+  }
+
+  article p {
+    margin-bottom: 22px;
+    color: #2e2820;
+    max-width: 68ch;
+  }
+
+  article p:first-of-type {
+    font-size: 1.08rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #3d3830;
+  }
+
+  article ul, article ol {
+    padding-left: 24px;
+    margin-bottom: 22px;
+    max-width: 68ch;
+  }
+
+  article li { margin-bottom: 8px; }
+
+  article strong { font-weight: 700; color: var(--ink); }
+  article em { font-style: italic; color: var(--muted); }
+
+  article code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78em;
+    background: var(--code-bg);
+    color: var(--code-txt);
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+
+  article a {
+    color: var(--accent2);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  article hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 40px 0;
+  }
+
+  article br { display: block; content: ''; margin: 6px 0; }
+
+  /* FAQ auto-style */
+  article h3 + p { margin-top: 0; }
+
+  /* Pull quote on first H2 */
+  article h2:first-of-type {
+    color: var(--accent);
+    border-top-color: var(--accent);
+  }
+
+  /* Sources */
+  .sources {
+    margin-top: 48px;
+    padding: 24px 28px;
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+  }
+  .sources-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .sources ul { list-style: none; padding: 0; }
+  .sources li {
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--muted);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--rule);
+    line-height: 1.5;
+  }
+  .sources li:last-child { border-bottom: none; }
+
+  /* ── Sidebar ── */
+  aside {
+    padding: 48px 28px 48px 32px;
+    position: sticky;
+    top: 58px;
+    align-self: start;
+    height: calc(100vh - 58px);
+    overflow-y: auto;
+  }
+
+  .aside-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .nav-post {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+    transition: color 0.15s, padding-left 0.15s;
+    line-height: 1.4;
+  }
+  .nav-post:hover { color: var(--accent); padding-left: 6px; }
+
+  .model-badge {
+    margin-top: 32px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 14px 16px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.8;
+  }
+  .model-badge span { color: #e8c99a; }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 2px solid var(--ink);
+    text-align: center;
+    padding: 28px;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @media (max-width: 768px) {
+    .layout { grid-template-columns: 1fr; }
+    aside { display: none; }
+    article { padding: 32px 24px 60px; }
+    .topbar { padding: 14px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="index.html">Trend<span>Forge</span></a>
+  <span class="topbar-right">AI Blog Engine</span>
+</header>
+
+<div class="layout">
+  <article>
+    <div class="post-label">Trending</div>
+
+    <h1>The Exciting World of Leagues: A Roundup of Latest Developments and Updates</h1>
+      <div class="post-meta">
+        <span>March 28, 2026</span>
+        <span class="meta-chip">mistral:7b</span>
+        <span class="meta-chip">geo: IN</span>
+        <span class="meta-chip">6 sources</span>
+      </div>
+<br>
+<p>In the ever-evolving world of sports, leagues are the heartbeat that keeps millions hooked. From cricket to football, the thrill of competition never fades. Let's delve into a comprehensive roundup of the latest developments in various leagues across the globe.</p>
+<br>
+<h2>Cricket Leagues: A Bleeding Heart of Passion</h2>
+<br>
+<p>The recent Super League match between Pakistan and another team was marred by unsporting behavior, with players wearing white jerseys drenched in red blood. Despite the unfortunate incident, the passion for cricket remains unwavering (<a href="https://news.google.com/rss/articles/CBMi4gFBVV95cUxOQmQyVWs3Qlc2Z2RRSHZBUk5PU1UyZXV5LWZ3T1luOHZmVmpwVFVDYkVzdXVIc3Y4RE1ER3hMRjhBX2tORU42UTJXZG5TUzJBX1dzdFZ2aEdhTGc2ZVlTZmVYdlFmT0tPOERfdWgtSHdsSTJUc2l2R1psX2dfWDZNNmZycEpic2VqZ2ozdDM1TkdSZDJpSGhaQVYtUmtsb2NhclJpaExtN0UyWGJaVFpyc0ZMdW5KUnl" target="_blank">Pakistan Super League</a>).</p>
+<br>
+<h2>Football Leagues: Globetrotting for Defence Agreements and Talent</h2>
+<br>
+<p>The football world was abuzz with the recent signing of a defense agreement between Qatar and Ukraine amid Zelenskyy's Gulf tour (<a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxNeUxMRFAyUm9RNkIxQjJURjF4RWMwajVRTkk1SGRJRjlmQTVIMVBjYXVUUmdXVXVhN0NBU0J6Y0JmbFF3UVpiMVJzUUVYUEE5UVZTRWl6NHRpSjhnT3pnWkoxSURDei1DbXBYZ0tQWnRZX0ZLcF94eXdFYlNXYkY3NEpVZzRqUTFyX3dFWUVXUVdVRkZqdlAzOVY0OEhsOWV0YkhxX05NT2xkdlpUY0g4Wg?oc=5" target="_blank">Qatar and Ukraine sign defence agreement</a>). Meanwhile, football clubs continue their pursuit of talent, with Qatar and the UK seeing a surge in player transfers. For instance, Glamorgan signed Fazalhaq Farooqi for T20 Blast (<a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxORFpZSkJvQlRpQ3BSNGNaZ3M2WWVDNHhROTJwV2piY1pobkJrLUpiZ1dRV2N4a0pPZ0U5aGhPOS1mLV9nX0ZtbmJkZkt2UzRiQlN6eUVCTkpURjMtVkNSdnBKaFh2T3p5LU9JaW5fd1VlLXN6bkczWl9JUEtsUmZMUkpOcW9oZ3Q0SGd3bkFFM3BTQld6S3FvN0lJcTU2RWJMZFHSAbMBQVVfeXFMTTgtQXAwVVFlSmt" target="_blank">Glamorgan sign Fazalhaq Farooqi</a>).</p>
+<br>
+<h2>County Championship: Strategic Signings and Final Stretch</h2>
+<br>
+<p>The final eight games of the County Championship are heating up, with Surrey signing leg spinner Rahul Chahar to boost their chances (<a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE45SVVLOEg3OUNpa3BNTjBoMWJINHNzUkdZaVNxWDQ1SEhBbUN2dGVPQmo5Q3llVjFwa2otQUZMa0UzMU05SXFaX083NzhuU0hOekVOM1hQUENIMXVUUjJqUXhkX1kxdw?oc=5" target="_blank">Rahul Chahar signs for Surrey</a>). Teams are strategizing, and the suspense is palpable.</p>
+<br>
+<h2>Champions League: A Battle of Giants</h2>
+<br>
+<p>The 2025/26 Champions League is a spectacle to behold, with teams battling it out for supremacy (<a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxQU1VXOFVqN1RLMzg4dkZaRm5yNTV1MEhKbTZiMUR3NFZIMF9iZ0pDOXA2eG0wQkN1Ukx1OEJfeW8tZ3BIUE1UQXFPSzVHbGlmNldDUjlfbnNHVWxpUGJoVTd3OVBtbTR6UWs3YW9POHhtUEQtRGNvMGJFUU5Pak9laWJUc3BJb3pBdXhMNDQwc2tQcHpkcC1OM0swRFNJVWxsZGkzVG5sOGhvelRvNDBFc010cHJ4RHd" target="_blank">Champions League fixtures and results</a>). The competition is fierce, and every game promises to be a nail-biter.</p>
+<br>
+<h2>FAQ</h2>
+<br>
+<ol>
+<li><strong>What happened in the Pakistan Super League match?</strong></li>
+</ol>
+<p>Unfortunate incidents led to a brawl during the initial days of the Pakistan Super League. Players wore white jerseys drenched in red blood, causing widespread concern.</p>
+<br>
+<ol>
+<li><strong>Who signed Fazalhaq Farooqi, and for which tournament?</strong></li>
+</ol>
+<p>Glamorgan signed Fazalhaq Farooqi for the T20 Blast.</p>
+<br>
+<ol>
+<li><strong>Who is Rahul Chahar, and what team did he join for the County Championship?</strong></li>
+</ol>
+<p>Rahul Chahar is a leg spinner who has joined Surrey for the final eight games of the County Championship.</p>
+<br>
+<h2>Conclusion</h2>
+<br>
+<p>The world of leagues continues to evolve at a rapid pace, with new developments and surprises around every corner. Whether it's cricket, football, or county championships, the thrill of competition keeps fans captivated. Stay tuned for more updates as these leagues unfold.</p>
+<br>
+<p><strong>Call-to-Action:</strong> Don't miss out on the latest sports news! Follow us for regular updates and insights into your favorite leagues.</p>
+
+
+    
+    <div class="sources">
+      <div class="sources-label">Sources Referenced</div>
+      <ul><li>पाकिस्तान सुपर लीग की पहले द‍िन ही घनघोर बेइज्जती, क्रिकेटर्स की जर्सी से सफेद गेंद हुई गुलाबी, हो गया हंगामा - AajTak (Fri, 27 Mar 2026 03:35:07 GMT)</li><li>Qatar and Ukraine sign defence agreement amid Zelenskyy Gulf tour - Euronews.com (Sat, 28 Mar 2026 16:18:43 GMT)</li><li>Glamorgan sign Fazalhaq Farooqi for T20 Blast - ESPNcricinfo (Fri, 27 Mar 2026 17:22:18 GMT)</li><li>Rahul Chahar: Surrey sign leg spinner for final eight County Championship games - bbc.com (Thu, 26 Mar 2026 12:53:38 GMT)</li><li>2025/26 Champions League: All the fixtures and results - uefa.com (Fri, 27 Mar 2026 07:00:00 GMT)</li><li>Report: Liverpool ready to launch €80m bid to sign Premier League star - OneFootball (Sat, 28 Mar 2026 15:00:00 GMT)</li></ul>
+    </div>
+  </article>
+
+  <aside>
+    <div class="aside-label">More Posts</div>
+    <a href="01-rcb.html" class="nav-post">$rcb</a><a href="02-vs.html" class="nav-post">vs</a><a href="03-srh.html" class="nav-post">srh</a><a href="04-.html" class="nav-post">इंडियन</a><a href="05-.html" class="nav-post">प्रीमियर</a><a href="06-.html" class="nav-post">लीग</a>
+
+    <div class="model-badge">
+      <div>Model: <span>mistral:7b</span></div>
+      <div>Region: <span>IN</span></div>
+      <div>Date: <span>March 28, 2026</span></div>
+    </div>
+  </aside>
+</div>
+
+<footer>Generated by TrendForge · Powered by Ollama</footer>
+
+</body>
+</html>
